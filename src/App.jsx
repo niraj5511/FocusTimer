@@ -12,7 +12,10 @@ export default function App() {
   const [mode, setMode] = useState("focus");
   const [secondsLeft, setSecondsLeft] = useState(DURATIONS.focus);
   const [isRunning, setIsRunning] = useState(false);
-  const [sessions, setSessions] = useState(0);
+  const [sessions, setSessions] = useState(() => {
+    const saved = localStorage.getItem("focus-sessions");
+    return saved ? Number(saved) : 0;
+  });
 
   // Ticks down once per second while running
   useEffect(() => {
@@ -24,6 +27,11 @@ export default function App() {
 
     return () => clearInterval(id);
   }, [isRunning]);
+
+  // Save the session count whenever it changes
+  useEffect(() => {
+    localStorage.setItem("focus-sessions", sessions);
+  }, [sessions]);
 
   // When the timer hits 0, count the session and switch modes
   useEffect(() => {
