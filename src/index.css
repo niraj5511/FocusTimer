@@ -38,3 +38,24 @@ button {
 button:hover {
   background: #3f3f46;
 }
+
+.modes {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.modes button {
+  background: #e4e4e7;
+  color: #18181b;
+}
+
+.modes button.active {
+  background: #18181b;
+  color: white;
+}
+
+.sessions {
+  margin-top: 1.5rem;
+  color: #52525b;
+}
