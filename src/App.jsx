@@ -37,7 +37,7 @@ export default function App() {
   useEffect(() => {
     document.title = `${formatTime(secondsLeft)} - Focus Timer`;
   }, [secondsLeft]);
-  
+
   // When the timer hits 0, count the session and switch modes
   useEffect(() => {
     if (secondsLeft > 0) return;
@@ -58,6 +58,10 @@ export default function App() {
   function handleReset() {
     setIsRunning(false);
     setSecondsLeft(DURATIONS[mode]);
+  }
+
+  function handleClearSessions() {
+    setSessions(0);
   }
 
   return (
@@ -85,6 +89,9 @@ export default function App() {
         <button onClick={handleReset}>Reset</button>
       </div>
       <p className="sessions">Completed sessions: {sessions}</p>
+      <button className="link-button" onClick={handleClearSessions}>
+        Clear sessions
+      </button>
     </main>
   );
 }

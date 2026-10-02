@@ -59,3 +59,16 @@ button:hover {
   margin-top: 1.5rem;
   color: #52525b;
 }
+
+.link-button {
+  background: none;
+  color: #52525b;
+  text-decoration: underline;
+  padding: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.link-button:hover {
+  background: none;
+  color: #18181b;
+}
