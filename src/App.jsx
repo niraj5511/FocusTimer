@@ -33,6 +33,11 @@ export default function App() {
     localStorage.setItem("focus-sessions", sessions);
   }, [sessions]);
 
+  // Show the time in the browser tab title
+  useEffect(() => {
+    document.title = `${formatTime(secondsLeft)} - Focus Timer`;
+  }, [secondsLeft]);
+  
   // When the timer hits 0, count the session and switch modes
   useEffect(() => {
     if (secondsLeft > 0) return;
