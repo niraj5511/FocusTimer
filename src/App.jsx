@@ -8,6 +8,16 @@ function formatTime(totalSeconds) {
   return `${minutes}:${seconds}`;
 }
 
+function playBeep() {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  const ctx = new AudioCtx();
+  const osc = ctx.createOscillator();
+  osc.frequency.value = 880;
+  osc.connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + 0.4);
+}
+
 export default function App() {
   const [mode, setMode] = useState("focus");
   const [secondsLeft, setSecondsLeft] = useState(DURATIONS.focus);
@@ -41,7 +51,7 @@ export default function App() {
   // When the timer hits 0, count the session and switch modes
   useEffect(() => {
     if (secondsLeft > 0) return;
-
+    playBeep();
     const nextMode = mode === "focus" ? "break" : "focus";
     if (mode === "focus") setSessions((n) => n + 1);
     setMode(nextMode);
