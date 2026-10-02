@@ -72,3 +72,27 @@ button:hover {
   background: none;
   color: #18181b;
 }
+
+.settings {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.settings label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: #52525b;
+}
+
+.settings input {
+  width: 5rem;
+  padding: 0.4rem;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid #d4d4d8;
+  border-radius: 6px;
+}

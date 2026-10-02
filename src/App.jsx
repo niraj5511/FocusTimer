@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const DURATIONS = { focus: 25 * 60, break: 5 * 60 };
+const DEFAULT_MINUTES = { focus: 25, break: 5 };
 
 function formatTime(totalSeconds) {
   const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
@@ -20,7 +20,8 @@ function playBeep() {
 
 export default function App() {
   const [mode, setMode] = useState("focus");
-  const [secondsLeft, setSecondsLeft] = useState(DURATIONS.focus);
+  const [minutes, setMinutes] = useState(DEFAULT_MINUTES);
+  const [secondsLeft, setSecondsLeft] = useState(DEFAULT_MINUTES.focus * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [sessions, setSessions] = useState(() => {
     const saved = localStorage.getItem("focus-sessions");
@@ -55,23 +56,32 @@ export default function App() {
     const nextMode = mode === "focus" ? "break" : "focus";
     if (mode === "focus") setSessions((n) => n + 1);
     setMode(nextMode);
-    setSecondsLeft(DURATIONS[nextMode]);
+    setSecondsLeft(minutes[nextMode] * 60);
     setIsRunning(false);
-  }, [secondsLeft, mode]);
+  }, [secondsLeft, mode, minutes]);
 
   function switchMode(newMode) {
     setMode(newMode);
-    setSecondsLeft(DURATIONS[newMode]);
+    setSecondsLeft(minutes[newMode] * 60);
     setIsRunning(false);
   }
 
   function handleReset() {
     setIsRunning(false);
-    setSecondsLeft(DURATIONS[mode]);
+    setSecondsLeft(minutes[mode] * 60);
   }
 
   function handleClearSessions() {
     setSessions(0);
+  }
+
+  function handleMinutesChange(which, value) {
+    const num = Math.max(1, Math.min(120, Number(value) || 1));
+    setMinutes({ ...minutes, [which]: num });
+    if (which === mode) {
+      setIsRunning(false);
+      setSecondsLeft(num * 60);
+    }
   }
 
   return (
@@ -97,6 +107,28 @@ export default function App() {
           {isRunning ? "Pause" : "Start"}
         </button>
         <button onClick={handleReset}>Reset</button>
+      </div>
+      <div className="settings">
+        <label>
+          Focus (min)
+          <input
+            type="number"
+            min="1"
+            max="120"
+            value={minutes.focus}
+            onChange={(e) => handleMinutesChange("focus", e.target.value)}
+          />
+        </label>
+        <label>
+          Break (min)
+          <input
+            type="number"
+            min="1"
+            max="120"
+            value={minutes.break}
+            onChange={(e) => handleMinutesChange("break", e.target.value)}
+          />
+        </label>
       </div>
       <p className="sessions">Completed sessions: {sessions}</p>
       <button className="link-button" onClick={handleClearSessions}>

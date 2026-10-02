@@ -7,6 +7,7 @@ A small Pomodoro timer built with React and Vite.
 - 25-minute focus and 5-minute break modes
 - Start, pause and reset
 - Completed sessions counter, saved in the browser with localStorage
+- Custom focus and break lengths
 
 ## Run locally
 
