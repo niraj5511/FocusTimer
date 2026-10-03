@@ -18,6 +18,12 @@ function playBeep() {
   osc.stop(ctx.currentTime + 0.4);
 }
 
+function notify(message) {
+  if ("Notification" in window && Notification.permission === "granted") {
+    new Notification("Focus Timer", { body: message });
+  }
+}
+
 export default function App() {
   const [mode, setMode] = useState("focus");
   const [minutes, setMinutes] = useState(DEFAULT_MINUTES);
@@ -81,6 +87,11 @@ export default function App() {
   useEffect(() => {
     if (secondsLeft > 0) return;
     playBeep();
+    notify(
+      mode === "focus"
+        ? "Focus session done. Time for a break."
+        : "Break over. Back to focus.",
+    );
     const nextMode = mode === "focus" ? "break" : "focus";
     if (mode === "focus") setSessions((n) => n + 1);
     setMode(nextMode);
@@ -101,6 +112,13 @@ export default function App() {
 
   function handleClearSessions() {
     setSessions(0);
+  }
+
+  function handleStartPause() {
+    if ("Notification" in window && Notification.permission === "default") {
+      Notification.requestPermission();
+    }
+    setIsRunning(!isRunning);
   }
 
   function handleMinutesChange(which, value) {
@@ -143,7 +161,7 @@ export default function App() {
         <div className="progress-fill" style={{ width: `${progress}%` }} />
       </div>
       <div className="buttons">
-        <button onClick={() => setIsRunning(!isRunning)}>
+        <button onClick={handleStartPause}>
           {isRunning ? "Pause" : "Start"}
         </button>
         <button onClick={handleReset}>Reset</button>
