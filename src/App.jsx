@@ -27,6 +27,9 @@ export default function App() {
     const saved = localStorage.getItem("focus-sessions");
     return saved ? Number(saved) : 0;
   });
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("focus-theme") || "light",
+  );
 
   // Ticks down once per second while running
   useEffect(() => {
@@ -48,6 +51,12 @@ export default function App() {
   useEffect(() => {
     document.title = `${formatTime(secondsLeft)} - Focus Timer`;
   }, [secondsLeft]);
+
+  // Apply and save the theme
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem("focus-theme", theme);
+  }, [theme]);
 
   // When the timer hits 0, count the session and switch modes
   useEffect(() => {
@@ -87,6 +96,12 @@ export default function App() {
   return (
     <main>
       <h1>Focus Timer</h1>
+      <button
+        className="link-button"
+        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      >
+        {theme === "light" ? "Dark mode" : "Light mode"}
+      </button>
       <div className="modes">
         <button
           className={mode === "focus" ? "active" : ""}

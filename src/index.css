@@ -96,3 +96,48 @@ button:hover {
   border: 1px solid #d4d4d8;
   border-radius: 6px;
 }
+
+[data-theme="dark"] body {
+  background: #18181b;
+  color: #f4f4f5;
+}
+
+[data-theme="dark"] button {
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+[data-theme="dark"] button:hover {
+  background: #d4d4d8;
+}
+
+[data-theme="dark"] .modes button {
+  background: #3f3f46;
+  color: #f4f4f5;
+}
+
+[data-theme="dark"] .modes button.active {
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+[data-theme="dark"] .sessions,
+[data-theme="dark"] .settings label {
+  color: #a1a1aa;
+}
+
+[data-theme="dark"] .link-button {
+  background: none;
+  color: #a1a1aa;
+}
+
+[data-theme="dark"] .link-button:hover {
+  background: none;
+  color: #f4f4f5;
+}
+
+[data-theme="dark"] .settings input {
+  background: #27272a;
+  color: #f4f4f5;
+  border-color: #52525b;
+}
