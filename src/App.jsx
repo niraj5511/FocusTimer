@@ -58,6 +58,25 @@ export default function App() {
     localStorage.setItem("focus-theme", theme);
   }, [theme]);
 
+  // Keyboard shortcuts: S = start/pause, R = reset
+  useEffect(() => {
+    function handleKey(e) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.target.tagName === "INPUT") return;
+
+      const key = e.key.toLowerCase();
+      if (key === "s") {
+        setIsRunning((prev) => !prev);
+      } else if (key === "r") {
+        setIsRunning(false);
+        setSecondsLeft(minutes[mode] * 60);
+      }
+    }
+
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [mode, minutes]);
+
   // When the timer hits 0, count the session and switch modes
   useEffect(() => {
     if (secondsLeft > 0) return;
@@ -123,6 +142,7 @@ export default function App() {
         </button>
         <button onClick={handleReset}>Reset</button>
       </div>
+      <p className="hint">Shortcuts: S start/pause, R reset</p>
       <div className="settings">
         <label>
           Focus (min)

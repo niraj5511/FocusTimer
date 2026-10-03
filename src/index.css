@@ -141,3 +141,9 @@ button:hover {
   color: #f4f4f5;
   border-color: #52525b;
 }
+
+.hint {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #71717a;
+}

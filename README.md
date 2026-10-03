@@ -8,6 +8,7 @@ A small Pomodoro timer built with React and Vite.
 - Start, pause and reset
 - Completed sessions counter, saved in the browser with localStorage
 - Custom focus and break lengths
+- Keyboard shortcuts (S to start/pause, R to reset)
 
 ## Run locally
 
