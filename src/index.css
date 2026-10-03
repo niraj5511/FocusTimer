@@ -147,3 +147,26 @@ button:hover {
   font-size: 0.85rem;
   color: #71717a;
 }
+
+.progress {
+  width: 16rem;
+  height: 8px;
+  margin: 0 auto 1.5rem;
+  background: #e4e4e7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #18181b;
+  transition: width 1s linear;
+}
+
+[data-theme="dark"] .progress {
+  background: #3f3f46;
+}
+
+[data-theme="dark"] .progress-fill {
+  background: #f4f4f5;
+}

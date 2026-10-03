@@ -112,6 +112,9 @@ export default function App() {
     }
   }
 
+  const totalSeconds = minutes[mode] * 60;
+  const progress = ((totalSeconds - secondsLeft) / totalSeconds) * 100;
+
   return (
     <main>
       <h1>Focus Timer</h1>
@@ -136,6 +139,9 @@ export default function App() {
         </button>
       </div>
       <p className="time">{formatTime(secondsLeft)}</p>
+      <div className="progress">
+        <div className="progress-fill" style={{ width: `${progress}%` }} />
+      </div>
       <div className="buttons">
         <button onClick={() => setIsRunning(!isRunning)}>
           {isRunning ? "Pause" : "Start"}
