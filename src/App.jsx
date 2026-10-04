@@ -3,16 +3,8 @@ import { useState, useEffect } from "react";
 const DEFAULT_MINUTES = { focus: 25, break: 5 };
 
 function formatTime(totalSeconds) {
-  const [minutes, setMinutes] = useState(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem("focus-minutes"));
-      if (saved && saved.focus && saved.break) return saved;
-    } catch {
-      // ignore bad saved data and use the defaults
-    }
-    return DEFAULT_MINUTES;
-  });
-  const [secondsLeft, setSecondsLeft] = useState(minutes.focus * 60);
+  const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+  const seconds = String(totalSeconds % 60).padStart(2, "0");
   return `${minutes}:${seconds}`;
 }
 
