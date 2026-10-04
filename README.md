@@ -25,3 +25,7 @@ Then open http://localhost:5173.
 
 - React
 - Vite
+
+## License
+
+MIT
