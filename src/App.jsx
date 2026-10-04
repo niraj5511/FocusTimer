@@ -44,7 +44,9 @@ export default function App() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("focus-theme") || "light",
   );
-
+  const [task, setTask] = useState(
+    () => localStorage.getItem("focus-task") || "",
+  );
   // Ticks down once per second while running
   useEffect(() => {
     if (!isRunning) return;
@@ -65,6 +67,11 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("focus-minutes", JSON.stringify(minutes));
   }, [minutes]);
+
+  // Save the task name
+  useEffect(() => {
+    localStorage.setItem("focus-task", task);
+  }, [task]);
 
   // Show the time in the browser tab title
   useEffect(() => {
@@ -169,6 +176,13 @@ export default function App() {
           Break
         </button>
       </div>
+      <input
+        className="task-input"
+        type="text"
+        placeholder="What are you working on?"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+      />
       <p className="time">{formatTime(secondsLeft)}</p>
       <div className="progress">
         <div className="progress-fill" style={{ width: `${progress}%` }} />

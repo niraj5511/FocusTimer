@@ -170,3 +170,19 @@ button:hover {
 [data-theme="dark"] .progress-fill {
   background: #f4f4f5;
 }
+.task-input {
+  display: block;
+  width: 16rem;
+  margin: 1.5rem auto 0;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid #d4d4d8;
+  border-radius: 6px;
+}
+
+[data-theme="dark"] .task-input {
+  background: #27272a;
+  color: #f4f4f5;
+  border-color: #52525b;
+}
