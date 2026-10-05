@@ -186,3 +186,18 @@ button:hover {
   color: #f4f4f5;
   border-color: #52525b;
 }
+main {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  margin-top: 0;
+}
+
+[data-theme="dark"] main {
+  background: #27272a;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
