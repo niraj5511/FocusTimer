@@ -233,3 +233,24 @@ button:focus-visible {
 .link-button:hover {
   box-shadow: none;
 }
+main[data-mode="focus"] {
+  --accent: #dc2626;
+}
+
+main[data-mode="break"] {
+  --accent: #15803d;
+}
+
+main[data-mode] .time {
+  color: var(--accent);
+  transition: color 0.3s;
+}
+
+main[data-mode] .progress-fill {
+  background: var(--accent);
+}
+
+main[data-mode] .modes button.active {
+  background: var(--accent);
+  color: white;
+}

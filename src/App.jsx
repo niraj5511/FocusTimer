@@ -146,7 +146,7 @@ export default function App() {
   const progress = ((totalSeconds - secondsLeft) / totalSeconds) * 100;
 
   return (
-    <main>
+    <main data-mode={mode}>
       <h1>Focus Timer</h1>
       <button
         className="link-button"
