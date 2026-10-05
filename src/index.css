@@ -204,7 +204,10 @@ h1 {
 
 button {
   font-weight: 600;
-  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.1s,
+    box-shadow 0.2s;
 }
 
 button:hover {
@@ -253,4 +256,33 @@ main[data-mode] .progress-fill {
 main[data-mode] .modes button.active {
   background: var(--accent);
   color: white;
+}
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  main {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    box-sizing: border-box;
+  }
+
+  .time {
+    font-size: 3.5rem;
+  }
+
+  .progress,
+  .task-input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .settings {
+    gap: 0.75rem;
+  }
+  .settings input {
+    width: 4.5rem;
+  }
 }
